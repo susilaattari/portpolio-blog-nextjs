@@ -3,6 +3,8 @@ import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
 import DarkMode from "../DarkMode";
+import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const links = [
   {
@@ -37,7 +39,9 @@ const links = [
   },
 ];
 function index() {
+  const session = useSession()
   const pathname = usePathname();
+  console.log(pathname)
   return (
     <div className="flex justify-between items-center p-5 h-[70px]">
       <Link href="/">SILAdev</Link>
@@ -53,13 +57,25 @@ function index() {
             {link.title}
           </Link>
         ))}
+       {session.status == "authenticated" && (
+         <button
+         className="p-1 bg-emerald-400 rounded"
+         onClick={() => signOut()}>
+         Keluar
+       </button>
+       )}
+       {/* {pathname !== "/dashboard/login" && session.status == 'unauthenticated' && (
         <button
-          className="p-1 bg-emerald-400 rounded"
-          onClick={() => {
-            console.log("Hello");
-          }}>
-          Logout
-        </button>
+        className="p-1 bg-emerald-400 rounded">
+        <Link href="/dashboard/login">Masuk</Link>
+      </button>
+       )}
+       {pathname == "/dashboard/login" && session.status == 'unauthenticated' && (
+        <button
+        className="p-1 bg-emerald-400 rounded">
+        <Link href="/dashboard/register">Daftar</Link>
+      </button>
+       )} */}
       </div>
     </div>
   );

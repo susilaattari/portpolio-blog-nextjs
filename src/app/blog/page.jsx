@@ -1,32 +1,34 @@
 "use client";
+import { NotFound } from "@/Components";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import useSWR from "swr";
 function Blog() {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  console.log(fetcher)
   const { data, error, isLoading } = useSWR(
     "http://localhost:3000/api/contents",
     fetcher
   );
-  console.log(data);
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
   // if (data) return <div>{JSON.stringify(data)}</div>;
   return (
     <div className="mt-12">
-      {data?.data.map((item) => (
+     {data.length == 0 ? data?.data.map((item) => (
         <Link
           href={`/blog/${item.id}`}
           className="hover:opacity-75 "
           key={item.id}>
-          <div className="flex gap-[50px] items-center">
+          <div className="flex gap-[50px] items-center border-b-2 hover:border-green-500 border-green-700 py-3">
             <div className="mb-5">
               <Image
-                src="https://images.pexels.com/photos/2103127/pexels-photo-2103127.jpeg"
+                src={item.img}
                 alt="website"
                 width={300}
                 height={250}
+                className="rounded-md shadow-md"
               />
             </div>
             <div>
@@ -37,9 +39,15 @@ function Blog() {
             </div>
           </div>
         </Link>
-      ))}
+      )):(<>
+      <div className="">
+        <NotFound/>
+      </div>
+      </>)}
     </div>
   );
 }
 
 export default Blog;
+
+
