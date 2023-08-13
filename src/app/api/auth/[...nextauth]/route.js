@@ -40,13 +40,13 @@ const heandler = NextAuth({
             if (isPasswordCorrect) {
               return user;
             } else {
-              throw new Error({massage:"Password tidak ditemukan"});
+              throw new Error("Password tidak ditemukan");
             }
           } else {
-            throw new Error({massage:"User Not Found"});
+            throw new Error("User Not Found");
           }
         } catch (err) {
-          throw new Error(err.massage);
+          throw new Error(err);
         }
       },
     }),

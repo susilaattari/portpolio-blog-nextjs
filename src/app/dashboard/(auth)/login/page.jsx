@@ -1,9 +1,9 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect,useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSession ,signIn} from "next-auth/react";
 
-function Login() {
+const Login = () =>{
   const session = useSession();
   const router = useRouter();
   const params = useSearchParams();
@@ -15,9 +15,11 @@ function Login() {
     // setSuccess(params.get("success"));
   }, [params]);
 
-
+  if (session.status === "loading") {
+    return <p>Loading...</p>;
+  }
   if (session.status === "authenticated") {
-    router?.push("/dashboard");
+   return  router.push("/dashboard");
     
   }
 

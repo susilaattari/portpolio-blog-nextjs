@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import useSWR from "swr";
+
+
 function Blog() {
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
   console.log(fetcher)
@@ -15,8 +17,10 @@ function Blog() {
   if (isLoading) return <div>loading...</div>;
   // if (data) return <div>{JSON.stringify(data)}</div>;
   return (
-    <div className="mt-12">
-     {data.length == 0 ? data?.data.map((item) => (
+    
+    <div className="mb-96 p-[100px]">
+ <div>
+ {data.length !== 0 ? data?.data.map((item) => (
         <Link
           href={`/blog/${item.id}`}
           className="hover:opacity-75 "
@@ -44,6 +48,7 @@ function Blog() {
         <NotFound/>
       </div>
       </>)}
+ </div>
     </div>
   );
 }

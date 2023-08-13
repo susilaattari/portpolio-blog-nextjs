@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@700&family=Roboto+Mono:wght@700&display=swap');
 body {
   max-width: 100vw;
   overflow-x: hidden;
@@ -34,4 +34,12 @@ body {
 }
 .style_input {
   @apply p-[10px] text-[20px] font-bold border border-l border-solid border-green-200 bg-transparent;
+}
+
+.f-roboto{
+  font-family: 'Roboto Mono', monospace;
+}
+.f-cormorant{
+  font-family: 'Cormorant', serif;
+  font-weight:bolder;
 }

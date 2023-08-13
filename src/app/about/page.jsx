@@ -19,7 +19,7 @@ export default function About() {
           <h2> Handcrafting award winning digital experiences</h2>
         </div>
       </div>
-      <div className="flex gap-[100px]">
+      <div className="md:flex md:gap-[100px]">
         <div className="flex-1 flex flex-col gap-[30px] mt-[50px]">
           <h1 className="text-3x1 font-bold">Who Are We?</h1>
           <p>

@@ -5,7 +5,7 @@ export default function DarkMode() {
   const { state, dispatch } = useContext(ThemeContext);
   return (
     <div
-      className="flex relative justify-center cursor-pointer items-center border w-[42px] h-[24] rounded-lg px-[5px]"
+      className="flex relative me-3 justify-center cursor-pointer items-center border w-[42px] h-[24] rounded-lg px-[5px]"
       onClick={() =>
         dispatch({
           type: "themeValue",
